@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';  // Import CORS
 import { Sequelize, DataTypes } from 'sequelize';
 
 // Initializing Express App
@@ -10,6 +11,10 @@ const sequelize = new Sequelize('mydatabase', 'eqq', 'az123456', {
   host: 'localhost',
   dialect: 'postgres',
 });
+
+app.use(cors({
+  origin: 'http://localhost:5173', // Allow requests from your frontend
+}));
 
 // BookStore Model
 const BookStore = sequelize.define('BookStore', {
@@ -224,7 +229,7 @@ app.get('/', (req, res) => {
 // Starting the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log('Server is running on port ${PORT}');
 });
 
-export { BookStore, Members, Books, Customers, BookTypes };
+export {BookStore,Members,Books,Customers,BookTypes};
