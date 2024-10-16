@@ -1,0 +1,37 @@
+Table BookStore {
+  SaleID integer [primary key]
+  CustomerID integer
+  BookID integer
+  PurchaseDate date
+  Quantity integer
+}
+
+Table Books {
+  BookID integer [primary key]
+  BookName text
+  BookTypeID integer
+  BookPrice float
+  Description text
+}
+
+Table Customers {
+  CustomerID integer [primary key]
+  MemberID integer 
+  CustomerName text
+  Sex text
+  Age integer
+  Contact integer
+  Address text
+}
+
+Table Members {
+  MemberID integer [primary key]
+  Point integer
+  JoinDate date
+  MembershipLevel text
+}
+
+Table BookTypes {
+  BookTypeID integer [primary key]
+  BookTypeName text
+}
