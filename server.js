@@ -7,8 +7,8 @@ const app = express();
 app.use(express.json());
 
 // Database Connection
-const sequelize = new Sequelize('mydatabase', 'eqq', 'az123456', {
-  host: 'localhost',
+const sequelize = new Sequelize('postgres', 'webadmin', 'HMTppc33296', {
+  host: 'node68441-env-5322576.proen.app.ruk-com.cloud:11376',
   dialect: 'postgres',
 });
 
