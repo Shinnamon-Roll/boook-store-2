@@ -142,6 +142,8 @@ const BookTypes = sequelize.define('BookTypes', {
   timestamps: false
 });
 
+
+
 // Sync Models with the Database
 sequelize.sync().then(() => {
   console.log('Database & tables created!');
