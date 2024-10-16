@@ -5,9 +5,10 @@ import { Sequelize, DataTypes } from 'sequelize';
 const app = express();
 
 // Database Connection
-const sequelize = new Sequelize('your_database', 'your_username', 'your_password', {
+const sequelize = new Sequelize('your_database', 'Shinnamon', 'chimonkung2547as', {
   host: 'localhost',
-  dialect: 'postgres'
+  dialect: 'postgres',
+  stroage: 'project/database/database.db'
 });
 
 // BookStore Model
