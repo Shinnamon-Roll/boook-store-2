@@ -1,5 +1,5 @@
-const express = require('express');
-const { Sequelize, DataTypes } = require('sequelize');
+import express from 'express';
+import { Sequelize, DataTypes } from 'sequelize';
 
 // Initializing Express App
 const app = express();
