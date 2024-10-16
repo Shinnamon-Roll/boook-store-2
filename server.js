@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';  // Import CORS
 import { Sequelize, DataTypes } from 'sequelize';
 
 // Initializing Express App
@@ -10,6 +11,10 @@ const sequelize = new Sequelize('mydatabase', 'eqq', 'az123456', {
   host: 'localhost',
   dialect: 'postgres',
 });
+
+app.use(cors({
+  origin: 'http://localhost:5173', // Allow requests from your frontend
+}));
 
 // BookStore Model
 const BookStore = sequelize.define('BookStore', {
