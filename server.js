@@ -3,6 +3,7 @@ import { Sequelize, DataTypes } from 'sequelize';
 
 // Initializing Express App
 const app = express();
+app.use(express.json());
 
 // Database Connection
 const sequelize = new Sequelize('mydatabase', 'eqq', 'az123456', {
@@ -142,7 +143,71 @@ const BookTypes = sequelize.define('BookTypes', {
   timestamps: false
 });
 
+// Create a book
+app.post('/books', async (req, res) => {
+  try {
+    const newBook = await Books.create(req.body);
+    res.status(201).json(newBook);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
 
+// Read all books
+app.get('/books', async (req, res) => {
+  try {
+    const books = await Books.findAll();
+    res.status(200).json(books);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Read one book by id
+app.get('/books/:id', async (req, res) => {
+  try {
+    const book = await Books.findByPk(req.params.id);
+    if (book) {
+      res.status(200).json(book);
+    } else {
+      res.status(404).json({ error: 'Book not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Update a book
+app.put('/books/:id', async (req, res) => {
+  try {
+    const updatedBook = await Books.update(req.body, {
+      where: { BookID: req.params.id }
+    });
+    if (updatedBook[0]) {
+      res.status(200).json({ message: 'Book updated successfully' });
+    } else {
+      res.status(404).json({ error: 'Book not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Delete a book
+app.delete('/books/:id', async (req, res) => {
+  try {
+    const rowsDeleted = await Books.destroy({
+      where: { BookID: req.params.id }
+    });
+    if (rowsDeleted) {
+      res.status(200).json({ message: 'Book deleted successfully' });
+    } else {
+      res.status(404).json({ error: 'Book not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 // Sync Models with the Database
 sequelize.sync().then(() => {
@@ -151,7 +216,7 @@ sequelize.sync().then(() => {
   console.error('Unable to create database:', error);
 });
 
-// Routes (ตัวอย่าง)
+// Routes (Example)
 app.get('/', (req, res) => {
   res.send('API is running!');
 });
@@ -159,7 +224,7 @@ app.get('/', (req, res) => {
 // Starting the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log('Server is running on port ${PORT}');
 });
 
-export {BookStore,Members,Books,Customers,BookTypes};
+export { BookStore, Members, Books, Customers, BookTypes };
