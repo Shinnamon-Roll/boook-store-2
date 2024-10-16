@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 
 // Database Connection
-const sequelize = new Sequelize('mydatabase', 'eqq', 'az123456', {
+const sequelize = new Sequelize('mydatabase', 'postgres', '123', {
   host: 'localhost',
   dialect: 'postgres',
 });
