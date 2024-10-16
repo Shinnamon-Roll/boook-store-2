@@ -8,7 +8,8 @@ app.use(express.json());
 
 // Database Connection
 const sequelize = new Sequelize('postgres', 'webadmin', 'HMTppc33296', {
-  host: '10.104.13.116:5432',
+  host: '10.104.13.116',
+  port: 5432,
   dialect: 'postgres',
 });
 
