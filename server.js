@@ -12,9 +12,7 @@ const sequelize = new Sequelize('postgres', 'webadmin', 'HMTppc33296', {
   dialect: 'postgres',
 });
 
-app.use(cors({
-  origin: 'http://localhost:5173', // Allow requests from your frontend
-}));
+app.use(cors());
 
 // BookStore Model
 const BookStore = sequelize.define('BookStore', {
